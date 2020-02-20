@@ -23,6 +23,11 @@
 
     <!-- Resolves views selected for rendering by @Controllers to .jsp resources
            in the /WEB-INF/ directory -->
+
+    <bean id="service" class="com.info.value.service.ChartServiceImpl"/>
+
+    <!--<bean id="dao" class="com.info.value.dao.CurrencyDAOImpl"/>-->
+
     <bean
             class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/html/"/>

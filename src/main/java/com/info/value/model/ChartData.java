@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CanvasJsChartData {
+public class ChartData {
 
     static Map<Object,Object> map = null;
     static List<List<Map<Object,Object>>> list = new ArrayList<List<Map<Object,Object>>>();
@@ -26,7 +26,7 @@ public class CanvasJsChartData {
         list.add(dataPoints1);
     }
 
-    public static List<List<Map<Object, Object>>> getCanvasJsDataList() {
+    public static List<List<Map<Object, Object>>> getDataList() {
         return list;
     }
 }

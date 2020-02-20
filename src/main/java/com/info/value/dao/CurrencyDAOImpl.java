@@ -1,6 +1,6 @@
 package com.info.value.dao;
 
-import com.info.value.model.CanvasJsChartData;
+import com.info.value.model.ChartData;
 import com.info.value.model.Currency;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -80,7 +80,7 @@ public class CurrencyDAOImpl implements CurrencyDAO {
     }
 
     @Override
-    public List<List<Map<Object, Object>>> getCanvasJsChartData() {
-        return CanvasJsChartData.getCanvasJsDataList();
+    public List<List<Map<Object, Object>>> getChartData() {
+        return ChartData.getDataList();
     }
 }

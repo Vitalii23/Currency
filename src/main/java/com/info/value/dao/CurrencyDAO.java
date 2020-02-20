@@ -19,5 +19,5 @@ public interface CurrencyDAO {
 
     List<Currency> listHistory();
 
-    List<List<Map<Object, Object>>> getCanvasJsChartData();
+    List<List<Map<Object, Object>>> getChartData();
 }

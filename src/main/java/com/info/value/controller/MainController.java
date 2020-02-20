@@ -2,7 +2,7 @@ package com.info.value.controller;
 
 import com.info.value.dao.CurrencyDAO;
 import com.info.value.model.Currency;
-import com.info.value.service.CanvasJsChartService;
+import com.info.value.service.ChartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -21,11 +21,11 @@ public class MainController {
     private CurrencyDAO currencyDAO;
 
     @Autowired
-    private CanvasJsChartService canvasJsChartService;
+    private ChartService chartService;
 
     // List, data currency
-    @RequestMapping(value = "/")
-    public ModelAndView currencyData(ModelAndView mav) {
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public ModelAndView currencyData(ModelAndView mav, ModelMap map) {
         List<Currency> listBuy = currencyDAO.listBuy();
         List<Currency> listSale = currencyDAO.listSale();
         List<Currency> listHistory = currencyDAO.listHistory();
@@ -36,6 +36,10 @@ public class MainController {
         mav.addObject("buyList", listBuy);
         mav.addObject("saleList", listSale);
         mav.addObject("list", listHistory);
+
+        List<List<Map<Object, Object>>> canvasJsDataList = chartService.getChartData();
+        map.addAttribute("dataPointsList", canvasJsDataList);
+
         mav.setViewName("index");
         return mav;
     }
@@ -59,13 +63,6 @@ public class MainController {
     public ModelAndView saveHistoryList (@ModelAttribute("currencyAddHistory") Currency currencyAddHistory){
         currencyDAO.add(currencyAddHistory);
         return new ModelAndView("redirect:/");
-    }
-
-    @RequestMapping(method = RequestMethod.GET)
-    public String mvc(ModelMap map){
-        List<List<Map<Object, Object>>> canvasJsDataList = canvasJsChartService.getCanvasJsChartData();
-        map.addAttribute("dataPointsList", canvasJsDataList);
-        return "index";
     }
 }
 

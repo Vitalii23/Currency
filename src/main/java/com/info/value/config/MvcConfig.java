@@ -14,13 +14,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import javax.sql.DataSource;
-import java.util.List;
-import java.util.Map;
 
 @Configuration
 @ComponentScan(basePackages="com.info.value")
 @EnableWebMvc
-
 public class MvcConfig extends WebMvcConfigurerAdapter {
 
     @Autowired

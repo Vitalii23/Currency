@@ -20,54 +20,49 @@
 <h6>Обмен валют</h6>
 <!--<script type="text/javascript" src="<c:url value="/resources/js/graph.js"/>"> -->
 <script type="text/javascript">
-  window.onload = function() {
+    window.onload = function() {
 
-    var dps = [[]];
-    var chart = new CanvasJS.Chart("chartContainer", {
-      theme: "light2", // "light1", "dark1", "dark2"
-      animationEnabled: true,
-      title: {
-        text: "Currency value"
-      },
-      subtitles: [{
-        text: "test"
-      }],
-      axisY: {
-        title: "value"
-      },
-      data: [{
-        type: "spline",
-        showInLegend: true,
-       // xValueFormatString: "####",
-        name: "Buy",
-        dataPoints: dps[0]
-      },
-        {
-          type: "spline",
-          showInLegend: true,
-         // xValueFormatString: "####",
-          name: "Sale",
-          dataPoints: dps[0]
-        }]
-    });
+        var dps = [[]];
+        var chart = new CanvasJS.Chart("chartContainer", {
+            theme: "light2", // "light1", "dark1", "dark2"
+            animationEnabled: true,
+            title: {
+                text: "Diamond Production - Canada"
+            },
+            subtitles: [{
+                text: "2006 - 2016"
+            }],
+            axisX: {
+                valueFormatString: "####"
+            },
+            axisY: {
+                title: "Volume (in million carats)"
+            },
+            data: [{
+                type: "spline",
+                xValueFormatString: "####",
+                yValueFormatString: "#,##0.0 million carats",
+                dataPoints: dps[0]
+            }]
+        });
 
-    var xValue;
-    var yValue;
+        var xValue;
+        var yValue;
 
-    <c:forEach items="${dataPointsList}" var="dataPoints" varStatus="loop">
-    <c:forEach items="${dataPoints}" var="dataPoint">
-    xValue = parseInt("${dataPoint.x}");
-    yValue = parseFloat("${dataPoint.y}");
-    dps[parseInt("${loop.index}")].push({
-      x : xValue,
-      y : yValue
-    });
-    </c:forEach>
-    </c:forEach>
+        <c:forEach items="${dataPointsList}" var="dataPoints" varStatus="loop">
+        <c:forEach items="${dataPoints}" var="dataPoint">
+        xValue = parseInt("${dataPoint.x}");
+        yValue = parseFloat("${dataPoint.y}");
+        dps[parseInt("${loop.index}")].push({
+            x : xValue,
+            y : yValue
+        });
+        </c:forEach>
+        </c:forEach>
 
-    chart.render();
+        chart.render();
 
-  }
+    }
 </script>
 <div id="chartContainer" style="height: 370px; width: 100%;"></div>
 <p>Валютные пары</p>
